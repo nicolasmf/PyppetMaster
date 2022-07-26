@@ -1,7 +1,7 @@
 import random
 import requests
 from Puppet import Puppet
-from browse import create_proton_account
+from browse import create_proton_account, create_instagram_account
 
 
 def get_puppet():
@@ -34,3 +34,5 @@ def get_puppet():
 
 
 create_proton_account(get_puppet())
+
+# create_instagram_account(get_puppet())
