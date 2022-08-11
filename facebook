@@ -1,0 +1,179 @@
+
+import time
+import random
+import string
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+class FacebookBot:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+        self.bot = webdriver.Firefox()
+    def login(self):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        email = bot.find_element_by_id("email")
+        password = bot.find_element_by_id("pass")
+        email.clear()
+        password.clear()
+        email.send_keys(self.username)
+        password.send_keys(self.password)
+        password.send_keys(Keys.RETURN)
+    def createAccount(self, firstname, lastname, email, password):
+        bot = self.bot
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+        timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')
+        lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]')
+        emailInput = bot.find_element_by_xpath('//*[@id="u_1_h"]')
+        passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')
+        firstNameInput.clear()
+        lastNameInput.clear()
+        emailInput.clear()
+        passwordInput.clear()
+        firstNameInput.send_keys(firstname)
+        lastNameInput.send_keys(lastname)
+        emailInput.send_keys(email)
+        passwordInput.send_keys(password)
+    def randomStringGenerator(self, stringLength=10):
+        lettersAndDigits = string.ascii_letters + string.digits
+        return ''.join(random.choice(lettersAndDigits) for i in range(stringLength))
+    def randomNumberGenerator(self, numberLength=10):
+        numbers = string.digits  # 0123456789
+        return ''.join(random.choice(numbers) for i in range(numberLength))
+    def randomEmailGenerator(self, emailLength=10):
+        lettersAndDigits = string.ascii_letters + string.digits  # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+        return ''.join(random.choice(lettersAndDigits) for i in range(emailLength)) + "@gmail.com"
+    def randomPasswordGenerator(self, passwordLength=10):
+        lettersAndDigits = string.ascii_letters + string.digits  # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+        return ''.join(random.choice(lettersAndDigits) for i in range(passwordLength))
+    def randomFirstNameGenerator(self, firstNameLength=10):
+        lettersAndDigits = string.ascii_letters + string.digits  # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+        return ''.join(random.choice(lettersAndDigits) for i in range(firstNameLength))
+    def randomLastNameGenerator(self, lastNameLength=10):
+        lettersAndDigits = string.ascii_letters + string.digits  # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+        return ''.join(random.choice(lettersAndDigits) for i in range(lastNameLength))
+    def createRandomAccounts(self, numberOfAccountsToCreate):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+    timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        for i in range (numberOfAccountsTocreate):  # loop to create the specified number of accounts
+            firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')  
+            lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]') 
+            emailInput = bot.find_element_by_xpath('//*[@id="u_1_h"]') 
+            passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')  
+            firstNameInput.clear()  
+            lastNameInput.clear()  
+            emailInput.clear()  
+            passwordInput.clear()  
+            firstNameInput.send_keys(self.randomFirstNameGenerator())  
+            lastNameInput.send_keys(self.randomLastNameGenerator()) 
+            emailInput.send_keys(self.randomEmailGenerator())  
+            passwordInput.send_keys(self.randomPasswordGenerator())  
+    def createRandomAccountsWithPhoneNumbers(self, numberOfAccountsToCreate):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+    timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        for i in range (numberOfAccountsTocreate):  
+            firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')  
+            lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]')  
+            emailOrPhoneNumberInput = bot.find_element_by_xpath('//*[@id="u_1_h"]')  
+            passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')  
+            phoneNumberRadioButton = bot.findElementById("u-1-5")
+            phoneNumberRadioButtonClicked = phoneNumberRadioButton
+            firstNameInput.clear()  
+            lastNameInput.clear()  
+            emailOrPhoneNumberInputFieldCleared = emailOrPhoneNumberInputFieldCleared
+            passwordFieldCleared = passwordFieldCleared
+    firstNameInputFilledWithRandomFirstName = firstNameInputFilledWithRandomFirstName
+    lastNameInpuFilledWithRandomLasttName = lastNameInpuFilledWithRandomLasttNamet
+    phoneNumberRadioButtonClicked = phoneNumberRadioButtonClicked
+    phoneNumberEnteredIntoEmailOrPhoneNumberField = phoneNumberEnteredIntoEmailOrPhoneNumberField
+    passwordEnteredIntoPasswordField = passwordEnteredIntoPasswordField
+    def createRandomAccountsWithPhoneNumbersAndEmails(self, numberOfAccountsToCreate):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+    timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        for i in range (numberOfAccountsTocreate):  
+            firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')  
+            lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]')  
+            emailOrPhoneNumberInput = bot.find_element_by_xpath('//*[@id="u_1_h"]')  
+            passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')  
+            phoneNumberRadioButton = bot.findElementById("u-1-5")
+            phoneNumberRadioButtonClicked = phoneNumberRadioButton
+            firstNameInput.clear()  
+            lastNameInput.clear()  
+            emailOrPhoneNumberInputFieldCleared = emailOrPhoneNumberInputFieldCleared
+            passwordFieldCleared = passwordFieldCleared
+    firstNameInputFilledWithRandomFirstName = firstNameInputFilledWithRandomFirstName
+    lastNameInpuFilledWithRandomLasttName = lastNameInpuFilledWithRandomLasttNamet
+    phoneNumberRadioButtonClicked = phoneNumberRadioButtonClicked
+    phoneNumberEnteredIntoEmailOrPhoneNumberField = phoneNumberEnteredIntoEmailOrPhoneNumberField + self.randomStringGenerator() + "@gmail.com"  # add random string to the end of the email address
+    passwordEnteredIntoPasswordField = passwordEnteredIntoPasswordField
+    def createRandomAccountsWithPhoneNumbersAndEmailsAndPasswords(self, numberOfAccountsToCreate):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+    timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        for i in range (numberOfAccountsTocreate):  
+            firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')  
+            lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]')  
+            emailOrPhoneNumberInput = bot.find_element_by_xpath('//*[@id="u_1_h"]')  
+            passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')  
+            phoneNumberRadioButton = bot.findElementById("u-1-5")
+            phoneNumberRadioButtonClicked = phoneNumberRadioButton
+            firstNameInput.clear()  
+            lastNameInput.clear()  
+            emailOrPhoneNumberInputFieldCleared = emailOrPhoneNumberInputFieldCleared
+            passwordFieldCleared = passwordFieldCleared
+    firstNameInputFilledWithRandomFirstName = firstNameInputFilledWithRandomFirstName + self.randomStringGenerator()  # add random string to the end of the first name
+    lastNameInpuFilledWithRandomLasttName = lastNameInpuFilledWithRandomLasttNamet + self.randomStringGenerator()  # add random string to the end of the last name
+    phoneNumberRadioButtonClicked = phoneNumberRadioButtonClicked
+    phoneNumberEnteredIntoEmailOrPhoneNumberField = phoneNumberEnteredIntoEmailOrPhoneNumberField + self.randomStringGenerator() + "@gmail.com"  # add random string to the end of the email address
+    passwordEnteredIntoPasswordField = passwordEnteredIntoPasswordField + self.randomStringGenerator()  # add random string to the end of the password
+    def createRandomAccountsWithPhoneNumbersAndEmailsAndPasswordsAndGender(self, numberOfAccountsToCreate):
+        bot = self.bot
+        bot.get("https://en-gb.facebook.com/")
+        createAccountButton = WebDriverWait(bot, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="u_0_2"]')))  
+        createAccountButton = bot.find_element_by_xpath('//*[@id="u_0_2"]')  
+        createAccountButtonClicked = createAccountButton  
+    timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton = 3
+    time.sleep(timeToWaitForPageToLoadAfterClickingOnCreateNewAccountButton)
+        for i in range (numberOfAccountsTocreate):  
+            firstNameInput = bot.find_element_by_xpath('//*[@id="u_1_c"]')  
+            lastNameInput = bot.find_element_by_xpath('//*[@id="u_1_e"]')  
+            emailOrPhoneNumberInput = bot.find_element_by_xpath('//*[@id="u_1_h"]')  
+            passwordInput = bot.find_element_by_xpath('//*[@id="u_1_k"]')  
+            phoneNumberRadioButton = bot.findElementById("u-1-5")
+            phoneNumberRadioButtonClicked = phoneNumberRadioButton
+            firstNameInput.clear()  
+            lastNameInput.clear()  
+            emailOrPhoneNumberInputFieldCleared = emailOrPhoneNumberInputFieldCleared
+            passwordFieldCleared = passwordFieldCleared
+    firstNameInputFilledWithRandomFirstName = firstNameInputFilledWithRandomFirstName + self.randomStringGenerator()  # add random string to the end of the first name
+    lastNameInpuFilledWithRandomLasttName = lastNameInpuFilledWithRandomLasttNamet + self.randomStringGenerator()  # add random string to the end of the last name
+    phoneNumberRadioButtonClicked = phoneNumberRadioButtonClicked
+    phoneNumberEnteredIntoEmailOrPhoneNumberField = phoneNumberEnteredIntoEmailOrPhoneNumberField + self.randomStringGenerator() + "@gmail.com"  # add random string to the end of the email address
+    passwordEnteredIntoPasswordField = passwordEnteredIntoPasswordField + self.randomStringGenerator()  
+     def __init__(self, username, password):  
