@@ -16,8 +16,8 @@ class App(QWidget):
         self.title = 'Sock Puppets'
         self.left = 10
         self.top = 10
-        self.width = 640
-        self.height = 480
+        self.width = 800
+        self.height = 640
         self.initUI()
 
     def initUI(self):
