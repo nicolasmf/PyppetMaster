@@ -1,0 +1,25 @@
+from selenium import webdriver
+import time
+import random
+import string
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+import os
+def randomString(stringLength=10):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+browser = webdriver.Firefox()
+browser.get('https://twitter.com/i/flow/signup')
+time.sleep(3)
+nameField = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[1]/label/div[2]/div/input')
+nameField.send_keys(randomString())
+phoneNumberField = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[2]/label[1]/div[2]')
+phoneNumberField.send_keys('+31612345678')
+smsButton = browser.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div[1]')
+smsButton.click()
+wait = WebDriverWait(browser, 10)  # Wait for 10 seconds until next page has loaded before continuing script execution! Otherwise, an exception will occur!
+wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="react-root"]')))  
+nextButton = browser.find_element_by_xpath('//*[@id="react-root"]')  
