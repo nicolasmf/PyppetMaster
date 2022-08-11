@@ -1,3 +1,7 @@
+""" 
+The GUI must add the ability to load social media and email accounts directly from within PyppetMaster
+"""
+
 import sys
 import os
 import time
