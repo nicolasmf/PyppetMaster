@@ -1,1 +1,59 @@
+import sqlite3
+from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
+import os
+import sys
+import csv
 
+
+class Database:
+
+    def __init__(self, master, *args, **kwargs):
+
+        self.master = master
+        self.heading = Label(master, text="PYppetMaster", font=('arial 40 bold'), fg='steelblue')
+        self.heading.place(x=200, y=0)
+
+      
+        self.conn = sqlite3.connect('personas.db')
+      
+        self.c = self.conn.cursor()
+
+
+        self.c.execute('''CREATE TABLE IF NOT EXISTS personas (gender text, first_name text, last_name text, street text, city text, state text, country text, postcode integer, username text, phone_number integer, email text, picture blob, Twitter_Username text, Twitter_Password text, Facebook_Username text, Facebook_Password text, Telegram_Username text, Telegram_Password text, Reddit_Username text, Reddit_Password text, Instagram_Username text, Instagram_Password text)''')
+
+        
+    def update(self):
+
+
+        self.conn = sqlite3.connect('personas.db')
+      
+        self.c = self.conn.cursor()
+
+        record_id = self.delete_box.get()
+
+        gender = self.gender_editor.get()
+        first_name = self.firstname_editor.get()
+        last_name = self.lastname_editor.get()
+        street = self.street_editor.get()
+        city = self.city_editor.get()
+        state = self.state_editor.get()
+        country = self.country_editor.get()
+        postcode = self.postcode_editor.get()
+        username = self.username_editor.get()
+        phone_number = self.phoneNumber_editor.get()
+        email = self.emailAddress_editor.get()
+
+  #def_save_edit  
+  #def_load                                                                                                                                                                                                                  
+        Twitter_Username = self.Twitter_Username_editor.get()
+        Twitter_Password = self.Twitter_Password_editor.get()
+        Facebook_Username = self.Facebook_Username_editor.get()
+        Facebook_Password = self.Facebook_Password_editor.get()
+        Telegram_Username = self.Telegram_Username_editor.get()
+        Telegram_Password = self.Telegram_Password_editor.get()
+        Reddit_Username = self.Reddit_Username_editor.get()
+        Reddit_Password = self.Reddit_Password_editor.get()
+        Instagram_Username = self.Instagram_Username_editor.get()
+        Instagram_Password = self.Instagram_Password_editor.get()
