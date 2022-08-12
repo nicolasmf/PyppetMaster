@@ -134,6 +134,7 @@ class App(QWidget):
         signup_button.clicked.connect(self.signup_button_clicked)
 
         self.show()
+###remove print() code below
 
     @pyqtSlot()
     def new_button_clicked(self):
