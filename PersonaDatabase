@@ -46,6 +46,9 @@ class Database:
         username = self.username_editor.get()
         phone_number = self.phoneNumber_editor.get()
         email = self.emailAddress_editor.get()
+        
+        
+        
 
   #def_save_edit  
   #def_load                                                                                                                                                                                                                  
@@ -53,9 +56,197 @@ class Database:
         Twitter_Password = self.Twitter_Password_editor.get()
         Facebook_Username = self.Facebook_Username_editor.get()
         Facebook_Password = self.Facebook_Password_editor.get()
-        Telegram_Username = self.Telegram_Username_editor.get()
-        Telegram_Password = self.Telegram_Password_editor.get()
+        #Telegram_Username = self.Telegram_Username_editor.get()
+        #Telegram_Password = self.Telegram_Password_editor.get()
         Reddit_Username = self.Reddit_Username_editor.get()
         Reddit_Password = self.Reddit_Password_editor.get()
         Instagram_Username = self.Instagram_Username_editor.get()
         Instagram_Password = self.Instagram_Password_editor.get()
+        LinkedIn_Username = self.LinkedIn_Username_editor.get()
+        LinkedIn_Password = self.LinkedIn_Password_editor.get()
+        
+        
+    
+        self.c.execute('''UPDATE personas SET gender = ?, first_name = ?, last_name = ?, street = ?, city = ?, state = ?, country = ?, postcode = ?, username = ?, phone_number = ?, email =?, Twitter_Username=?, Twitter_Password=?, Facebook_Username=?, Facebook_Password=?, Reddit_Username=?, Reddit_Password=?, Instagram_Username=?, Instagram_Password=? WHERE oid =?''', (gender ,first_name ,last_name ,street ,city ,state ,country ,postcode ,username ,phone_number ,email, Twitter_Username, Twitter_Password, Facebook_Username, Facebook_Password, Reddit_Username, Reddit_Password, Instagram_Username, Instagram_Password))
+
+        self.conn.commit()
+        self.conn.close()
+
+        editor.destroy()
+
+    def edit(self):
+        global editor
+        editor = Tk()
+        editor.title('Update a Record')
+        editor.geometry('400x300')
+
+        
+        conn2 = sqlite3.connect('personas.db')
+      
+        c2 = conn2.cursor()
+
+        record_id = self.delete_box.get()
+        c2.execute("SELECT * FROM personas WHERE oid = " + record_id)
+        records = c2.fetchall()
+
+        
+        self.gender_editor = Entry(editor, width=30)
+        self.gender_editor.grid(row=0, column=1, padx=20, pady=(10, 0))
+
+        self.firstname_editor = Entry(editor, width=30)
+        self.firstname_editor.grid(row=1, column=1)
+
+        self.lastname_editor = Entry(editor, width=30)
+        self.lastname_editor.grid(row=2, column=1)
+
+        self.street_editor = Entry(editor, width=30)
+        self.street_editor.grid(row=3, column=1)
+
+        self.city_editor = Entry(editor, width=30)
+        self.city_editor.grid(row=4, column=1)
+
+        self.state_editor = Entry(editor, width=30)
+        self.state_editor.grid(row=5, column=1)
+
+        self.country_editor = Entry(editor, width=30)
+        self.country_editor.grid(row=6, column=1)
+
+        self.postcode_editor = Entry(editor, width=30)
+        self.postcode_editor.grid(row=7, column=1)
+
+        self.username_editor = Entry(editor, width=30)
+        self.username_editor.grid(row=8, column=1)
+
+        self.phoneNumber_editor = Entry(editor, width=30)
+        self.phoneNumber_editor.grid(row=9, column=1)
+
+        self.emailAddress_editor = Entry(editor, width=30)
+        self.emailAddress_editor.grid(row=10, column=1) 
+                                                                                                                                                                  
+        self.Twitter_Username_editor = Entry(editor, width=30)
+        self.Twitter_Username_editor.grid(row=11, column=1)
+        
+        self.Twitter_Password_editor = Entry(master, show="*",width=30)
+        self.Twitter_Password_editor .grid(row=12, columnspan = 2 ,column = 1 )
+
+     #   Skip Telegram Username and Password  
+     
+        self.Facebook_Username_editor = Entry(editor, width=30)
+        self.Facebook_Username_editor.grid(row=13, column=1)
+
+        self.Facebook_Password_editor = Entry(master, show="*",width=30)
+        self.Facebook_Password_editor .grid(row=14, columnspan = 2 ,column = 1 )
+
+        self.Reddit_Username_editor = Entry(editor, width=30)
+        self.Reddit_Username_editor.grid(row=15, column=1)
+
+        self.Reddit_Password_editor = Entry(master, show="*",width=30)
+        self.Reddit_Password_editor .grid(row=16, columnspan = 2 ,column = 1 )
+
+        self.Instagram_Username_editor = Entry(editor, width=30)
+        self.Instagram_Username_editor.grid(row=17, column=1)
+
+        self.Instagram_Password_editor = Entry(master, show="*",width=30)
+        self.Instagram_Password_editor .grid(row=18, columnspan = 2 ,column = 1 )
+
+        self.LinkedIn_Username_editor = Entry(editor, width=30)
+        self.LinkedIn_Username_editor.grid(row=19, column=1)
+
+        self.LinkedIn_Password_editor = Entry(master, show="*",width=30)
+        self.LinkedIn_Password_editor .grid(row=20, columnspan = 2 ,column = 1 )
+
+        for record in records:
+            self.gender_editor.insert(0, record[0])
+            self.firstname_editor.insert(0, record[1])
+            self.lastname_editor.insert(0, record[2])
+            self.street_editor.insert(0, record[3])
+            self.city_editor.insert(0, record[4])
+            self.state_editor.insert(0, record[5])
+            self.country_editor.insert(0, record[6])
+            self.postcode_editor.insert(0, record[7])
+            self.username_editor .insert ( 0 ,record [ 8 ] )  
+            self.phoneNumber_editor .insert ( 0 ,record [ 9 ] )  
+            self.emailAddress_editor .insert ( 0 ,record [ 10 ] )  
+        
+            self.Twitter_Username_editor .insert ( 0 ,record [ 11 ] )  
+            self.Twitter_Password_editor .insert ( 0 ,record [ 12 ] )  
+
+      # Skip Telegram Username and Password  
+
+            self.Facebook_Username_editor .insert ( 0 ,record [ 13 ] )  
+            self.Facebook_Password_editor .insert ( 0 ,record [ 14 ] )  
+
+            self.Reddit_Username_editor .insert ( 0 ,record [ 15 ] )  
+            self.Reddit_Password_editor .insert ( 0 ,record [ 16 ] ) 
+
+            self.Instagram_Username_editor .insert ( 0 ,record [ 17 ] )  
+            self.Instagram_Password_editor .insert ( 0 ,record [ 18 ] )  
+
+            self.LinkedIn_Username_editor .insert ( 0 ,record [ 19 ] )  
+            self.LinkedIn_Password_editor .insert ( 0 ,record [ 20 ] )  
+
+        editButton = Button(master, text="Save Record", command=self.update)
+        editButton.grid(row=21, column=0, columnspan=2, pady=10, padx=10, ipadx=145)
+
+    def delete(self):
+
+        conn = sqlite3.connect('personas.db')
+
+        c = conn.cursor()
+
+        c.execute("DELETE from personas WHERE oid=" +self.deletebox1)
+
+        conn = sqlite3.commit()
+        
+        conn = sqlite3close()  # Close the database connection
+
+    def submit(self):
+        self.conn = sqlite3.connect('personas.db')
+      
+        self.c = self.conn.cursor()
+
+        self.c.execute("INSERT INTO personas VALUES (:gender, :first_name, :last_name, :street, :city, :state, :country, :postcode, :username, :phone_number, :email ,:Twitter_Username ,:Twitter_Password ,:Facebook_Username ,:Facebook_Password ,:Reddit_Username ,:Reddit_Password ,:Instagram_Username ,:Instagram_Password )",
+                       {
+                           'gender': self.gender.get(),
+                           'first_name': self.firstName.get(),
+                           'last_name': self.lastName.get(),
+                           'street': self.streetAddress1 . get (),  
+                           'city': self.city . get (),  
+                           'state': self.state . get (),  
+                           'country': self.country . get (), 
+                           'postcode': int (self . postcode . get ()),  
+
+                           'username': self . username . get (), 
+
+                           'phoneNumber' : int(self . phoneNumber . get ()),  # a phone number for SMS verification of social media accounts
+
+                            'email' : str(self . emailAddress . get ()),  # email address for account creation, access and recovery
+
+                        })
+
+        conn = sqlite3commit()   
+
+        conn = sqlite3close()  
+
+        gender = ''   
+        firstName = ''  
+        lastName = ''   
+        streetAddress1 = ''   
+        city = ''   
+        state = ''   
+        country = ''   
+        postcode = 0  
+
+        username = ''  
+
+        phoneNumber = 0  
+
+
+    def query(self):
+       self.conn = sqlite3.connect('personas.db')
+       self.c = self.conn.cursor()
+       self.c.execute("SELECT *, oid FROM personas")
+       records=self.c.fetchall()
+       print(records)
+       
+##Finish and fix the database 
