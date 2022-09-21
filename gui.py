@@ -1,5 +1,6 @@
 """ 
 The GUI must add the ability to load social media and email accounts directly from within PyppetMaster.  This is just a sketch of what is required.
+Requires PyQt5
 """
 
 import sys
